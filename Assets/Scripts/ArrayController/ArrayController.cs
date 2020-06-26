@@ -91,23 +91,23 @@ public class ArrayController : MonoBehaviour
     }
 
     public void setBlue(Element e){
-        e.setBlue(e.GetComponent<SpriteRenderer>());
+        e.setBlue();
     }
 
     public void setRed(Element e){
-        e.setRed(e.GetComponent<SpriteRenderer>());
+        e.setRed();
     }
 
     public void setClear(Element e){
-        e.setClear(e.GetComponent<SpriteRenderer>());
+        e.setClear();
     }
 
     public void setGreen(Element e){
-        e.setGreen(e.GetComponent<SpriteRenderer>());
+        e.setGreen();
     }
 
     public void setYellow(Element e){
-        e.setYellow(e.GetComponent<SpriteRenderer>());
+        e.setYellow();
     }
 
     public int[] getValues(){
