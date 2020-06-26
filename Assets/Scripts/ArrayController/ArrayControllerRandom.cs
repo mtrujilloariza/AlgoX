@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrayControllerRandom : MonoBehaviour
 {
     public Element elementPrefab; 
-    static int arraySize;
+    static int arraySize = 4;
     public int elementPadding;
     private Element[] array;
     public int min; 

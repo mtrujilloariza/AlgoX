@@ -14,12 +14,14 @@ public class ArraySizeController : MonoBehaviour
     {
         generateArray();
         fillArray();
+        select(array[0]);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void generateArray(){
@@ -82,5 +84,21 @@ public class ArraySizeController : MonoBehaviour
         }
     }
 
+    public void deselectOtherElement(int newSelectedValue){
+        foreach (ArraySizeSelectorElement e in array){
+            if (e.isSelected && newSelectedValue != e.getValue()){
+                e.deselect();
+            }
+        }
+    }
     
+    public void selectElement(int index){
+        array[index].select();
+    }
+
+    public void select(ArraySizeSelectorElement e){
+        e.setArraySize();
+        e.setBlue();
+        e.isSelected = true;
+    }
 }

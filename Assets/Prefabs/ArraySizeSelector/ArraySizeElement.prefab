@@ -353,8 +353,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 3e85dd8be2d17b845a9aa3877ee34321, type: 3}
   blueElement: {fileID: 21300000, guid: 407c8ed4d012dab4ba8e20051a2d6044, type: 3}
-  greyElement: {fileID: 0}
+  greyElement: {fileID: 21300000, guid: 91caae6175b4eda499e47dfc1020bdb3, type: 3}
   textBox: {fileID: 7291991817524107554}
+  isSelected: 0
 --- !u!65 &1334486291
 BoxCollider:
   m_ObjectHideFlags: 0

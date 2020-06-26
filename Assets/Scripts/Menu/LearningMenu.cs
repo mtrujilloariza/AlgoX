@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 public class LearningMenu : MonoBehaviour
 {
     public void loadSelctionSort(){
-        SceneManager.LoadScene("Selection Sort");
+        SceneManager.LoadScene("SelectionSort");
+    }
+
+    public void loadSelectionSortMenu(){
+        SceneManager.LoadScene("SelectionSortMenu");
+    }
+
+    public void loadLearningMenu(){
+        SceneManager.LoadScene("Learning Menu");
     }
 }

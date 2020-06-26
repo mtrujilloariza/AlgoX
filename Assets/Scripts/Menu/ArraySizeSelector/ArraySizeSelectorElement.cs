@@ -9,34 +9,23 @@ public class ArraySizeSelectorElement : MonoBehaviour
     public Sprite defaultSprite; 
     public Sprite blueElement;
     public Sprite greyElement;
-    private SpriteRenderer spriteRenderer;
     public TextMeshProUGUI textBox; 
-    // Start is called before the first frame update
-    void Start()
-    {
-        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool isSelected;
 
     public void setValue(int x){
         this.value = x;
     }
 
-    public void setClear(SpriteRenderer spriteRenderer){
-        spriteRenderer.sprite = defaultSprite;
+    public void setClear(){
+        this.GetComponent<SpriteRenderer>().sprite = defaultSprite;
     }
 
-    public void setBlue(SpriteRenderer spriteRenderer){
-        spriteRenderer.sprite = blueElement;
+    public void setBlue(){
+        this.GetComponent<SpriteRenderer>().sprite = blueElement;
     }
 
-    public void setGrey(SpriteRenderer spriteRenderer){
-        spriteRenderer.sprite = greyElement;
+    public void setGrey(){
+        this.GetComponent<SpriteRenderer>().sprite = greyElement;
     }
 
     public int getValue(){
@@ -52,19 +41,34 @@ public class ArraySizeSelectorElement : MonoBehaviour
     }
     public void OnMouseOver()
     {
-        setBlue(spriteRenderer);
+        if (!isSelected){
+            setGrey();
+        }
         if (Input.GetMouseButtonDown(0)){
-            setArraySize();
+           select(); 
+           FindObjectOfType<ArraySizeController>().deselectOtherElement(value);
         }
     }
 
     public void OnMouseExit()
     {
-        setClear(spriteRenderer);
+        if(!isSelected){
+            setClear();
+        }
     }
 
     public void setArraySize(){
         ArrayControllerRandom.setSize(this.value);
-        Debug.Log(ArrayControllerRandom.getSize());
+    }
+
+    public void deselect(){
+        isSelected = false;
+        setClear();
+    }
+
+    public void select(){
+        setArraySize();
+        setBlue();
+        isSelected = true;
     }
 }
