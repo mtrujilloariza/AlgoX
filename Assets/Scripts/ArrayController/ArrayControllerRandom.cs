@@ -131,4 +131,8 @@ public class ArrayControllerRandom : MonoBehaviour
     public static int getSize(){
         return arraySize;
     }
+
+    public int getValue(int index){
+        return array[index].getValue();
+    }
 }

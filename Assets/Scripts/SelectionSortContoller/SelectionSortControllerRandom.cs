@@ -13,16 +13,14 @@ public class SelectionSortControllerRandom : MonoBehaviour
     private bool AllowUserControl;
     public bool repeat;
 
-    // Start is called before the first frame update
     void Start()
     {
         arrayController.generateArray();
         arrayController.fillArray();
-        arrayController.setBlue(arrayController.GetElement(0));
+        inspectElement(0);
         AllowUserControl = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (AllowUserControl == true){
@@ -30,12 +28,11 @@ public class SelectionSortControllerRandom : MonoBehaviour
                 if (Input.GetKeyDown("right")){
                     moveRight();
                 }
-
                 if (Input.GetKeyDown("down")){
-                    SelectElement();
+                    SelectCurrentElement();
                 }
             } else {
-                arrayController.setGreen(arrayController.GetElement(minIndex));
+                setCorrect(minIndex);
                 AllowUserControl = false;
                 if(repeat){
                     StartCoroutine(restartArray());
@@ -47,27 +44,25 @@ public class SelectionSortControllerRandom : MonoBehaviour
     public void moveRight(){
         if(elementSelected == true && validMove()){
             if (selectedIndex != currentIndex){
-                arrayController.setClear(arrayController.GetElement(currentIndex));
+                deselectElement(currentIndex);
             }
             LastElementSwapCheck();
-            arrayController.setBlue(arrayController.GetElement(currentIndex));
+            inspectElement(currentIndex);
         } else {
             StartCoroutine(ResetInteration());
         }
 
     }
 
-    public void SelectElement(){
+    public void SelectCurrentElement(){
         if (CheckCorrectSwap()){
+            selectElement(currentIndex);
             if (elementSelected == false){
                 elementSelected = true;
-                arrayController.setYellow(arrayController.GetElement(currentIndex));
-                selectedIndex = currentIndex;
             } else {
-                arrayController.setYellow(arrayController.GetElement(currentIndex));
-                arrayController.setClear(arrayController.GetElement(selectedIndex));
-                selectedIndex = currentIndex;
+                deselectElement(selectedIndex);
             }
+            selectedIndex = currentIndex;
         } else {
             StartCoroutine(ResetInteration());
         }
@@ -76,18 +71,18 @@ public class SelectionSortControllerRandom : MonoBehaviour
     IEnumerator ResetInteration(){
         AllowUserControl = false;
         if (elementSelected == true){
-            arrayController.setClear(arrayController.GetElement(selectedIndex));
+            deselectElement(selectedIndex);
             elementSelected = false;
         }
         for (int i = 0; i < 2; i++){
-            arrayController.setRed(arrayController.GetElement(currentIndex));
+            setWrong(currentIndex);
             yield return new WaitForSeconds(blinkSpeed);
-            arrayController.setClear(arrayController.GetElement(currentIndex));
+            deselectElement(currentIndex);
             yield return new WaitForSeconds(blinkSpeed);
         }
         
         currentIndex = minIndex;
-        arrayController.setBlue(arrayController.GetElement(currentIndex));
+        inspectElement(currentIndex);
 
         AllowUserControl = true;
     }
@@ -99,7 +94,7 @@ public class SelectionSortControllerRandom : MonoBehaviour
                 return;
             }
             arrayController.swap(minIndex, selectedIndex);
-            arrayController.setGreen(arrayController.GetElement(minIndex));
+            setCorrect(minIndex);
 
             minIndex++;
             currentIndex = minIndex;
@@ -165,12 +160,32 @@ public class SelectionSortControllerRandom : MonoBehaviour
         
         arrayController.generateArray();
         arrayController.fillArray();
-        arrayController.setBlue(arrayController.GetElement(0));
+        inspectElement(0);
         
         AllowUserControl = true;
         currentIndex = 0;
         minIndex = 0;
         selectedIndex = 0;
         yield return null;
+    }
+
+    public void inspectElement(int index){
+        arrayController.GetElement(index).setBlue();
+    }
+
+    public void setCorrect(int index){
+        arrayController.GetElement(index).setGreen();
+    }
+
+    public void deselectElement(int index){
+        arrayController.GetElement(index).setClear();
+    }
+    
+    public void selectElement(int index){
+        arrayController.GetElement(index).setYellow();
+    }
+
+    public void setWrong(int index){
+        arrayController.GetElement(index).setRed();
     }
 }

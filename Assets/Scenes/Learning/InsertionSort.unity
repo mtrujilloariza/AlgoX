@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9462d113eacbf1d49a85e05f8de19924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrayController: {fileID: 1834782286808985274}
+  array: {fileID: 1834782286808985274}
   blinkSpeed: 0.2
   repeat: 1
 --- !u!1 &1834782286808985273
