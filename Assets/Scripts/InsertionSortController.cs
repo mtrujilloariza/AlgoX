@@ -9,8 +9,6 @@ public class InsertionSortController : MonoBehaviour
     private int currentIndex = 1;
     private int compareIndex = 0;
     private int nextIndex = 2;
-    private bool elementSelected = false;
-    private int selectedIndex;
     private bool AllowUserControl;
     public bool repeat;
 
@@ -25,20 +23,36 @@ public class InsertionSortController : MonoBehaviour
     void Update()
     {
         if (AllowUserControl == true){
-            if(Input.GetKeyDown("down") && validSwap()){
-                swap();
-            } else if(!validSwap()) {
-                StartCoroutine(showError());
-            }
+            if(Input.GetKeyDown("down")){
+                if (validSwap()){
+                    swap();
+                } else {
+                    StartCoroutine(showError());
+                }
+            } 
 
-            if(Input.GetKeyDown("left") && validMove()){
-                compareNext();
-            } else if (!validMove()){
-                StartCoroutine(showError());
-            }
+            if(Input.GetKeyDown("left")){
+                if(validMove()){
+                    compareNext();
+                } else{
+                    StartCoroutine(showError());
+                }
+            } 
 
-            if(Input.GetKeyDown("right") && validPosition()){
-                
+            if(Input.GetKeyDown("right")){
+                if(validPosition()){
+                    if (!lastElementCheck()){
+                        nextElement();
+                    } else {
+                        deinspect(currentIndex, compareIndex);
+                        AllowUserControl = false;
+                        if (repeat == true){
+                            StartCoroutine(restartArray());
+                        }
+                    }
+                } else {
+                    StartCoroutine(showError());
+                }
             }
         }
     }
@@ -50,10 +64,13 @@ public class InsertionSortController : MonoBehaviour
     }
 
     public bool validSwap(){
-        if (array.getValue(currentIndex) < array.getValue(compareIndex)){
-            return true;
+        if (array.getValue(currentIndex) >= array.getValue(compareIndex)){
+            return false;
         }
-        return false;
+
+        if (currentIndex < compareIndex) return false;
+
+        return true;
     }
 
     IEnumerator showError(){
@@ -65,7 +82,8 @@ public class InsertionSortController : MonoBehaviour
         setError(currentIndex, compareIndex);
         yield return new WaitForSeconds(blinkSpeed);
         deinspect(currentIndex, compareIndex);
-        AllowUserControl = true;    
+        AllowUserControl = true;  
+        inspectElements(currentIndex, compareIndex);  
     }
 
     public bool validMove(){
@@ -81,7 +99,30 @@ public class InsertionSortController : MonoBehaviour
     }
 
     public bool validPosition(){
+        if (currentIndex < compareIndex){
+            if (currentIndex != 0) return false;
+        } else {
+            if(array.getValue(currentIndex) < array.getValue(compareIndex)){
+                return false;
+            }
+        }
+
+        if (validMove()) return false;
+
         return true;
+    }
+
+    public void nextElement(){
+        deinspect(currentIndex, compareIndex);
+        currentIndex = nextIndex;
+        nextIndex++;
+        compareIndex = currentIndex - 1;
+        inspectElements(currentIndex, compareIndex);
+    }
+
+    public bool lastElementCheck(){
+        if (nextIndex == ArrayControllerRandom.getSize()) return true;
+        return false;
     }
 
     IEnumerator restartArray(){
@@ -105,12 +146,13 @@ public class InsertionSortController : MonoBehaviour
         
         array.generateArray();
         array.fillArray();
-        array.setBlue(array.GetElement(0));
-        
-        AllowUserControl = true;
+        inspectElements(0, 1);
+
         currentIndex = 1;
         nextIndex = 2;
-        selectedIndex = 0;
+        compareIndex = 0;
+
+        AllowUserControl = true;
         yield return null;
     }
 
@@ -125,8 +167,16 @@ public class InsertionSortController : MonoBehaviour
     }
 
     public void deinspect(int x, int y){
-        array.GetElement(x).setClear();
-        array.GetElement(y).setClear();
+        if (x < nextIndex){
+            array.GetElement(x).setGreen();
+        } else {
+            array.GetElement(x).setClear();
+        }
+        if (y < nextIndex){
+            array.GetElement(y).setGreen();
+        } else {
+            array.GetElement(y).setClear();
+        }
     }
 }
 
