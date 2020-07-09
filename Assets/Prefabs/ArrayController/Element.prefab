@@ -356,3 +356,4 @@ MonoBehaviour:
   redElement: {fileID: 21300000, guid: 1449711bde874e54cbd67624c9ace0cb, type: 3}
   greenElement: {fileID: 21300000, guid: 3798fe11a8afbfa45a1e41d5cbfa47fc, type: 3}
   yellowElement: {fileID: 21300000, guid: 7d70e30280bf5d04b932a8e7dbfae67c, type: 3}
+  greyElement: {fileID: 21300000, guid: 91caae6175b4eda499e47dfc1020bdb3, type: 3}

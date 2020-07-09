@@ -6,15 +6,18 @@ public class ArrayControllerRandom : MonoBehaviour
 {
     public Element elementPrefab; 
     static int arraySize = 4;
+    public int size;
     public int elementPadding;
     private Element[] array;
     public int min; 
     public int max;
 
     public void generateArray(){
-        int x = 0;
+        int x = (int) this.transform.position.x;
+        int x2 = (int) this.transform.position.x;
         int mid = (arraySize - 1) / 2; 
         array = new Element[arraySize];
+        size = arraySize;
 
         if (arraySize % 2 == 0){
             Element e;
@@ -22,13 +25,15 @@ public class ArrayControllerRandom : MonoBehaviour
             for(int i = 0; i < arraySize; i += 2){
                 if (i == 0){
                     x += (elementPadding / 2);
+                    x2 -= (elementPadding / 2);
                 } else {
                     x += (elementPadding);
+                    x2 -= (elementPadding);
                 }   
 
                 e = Instantiate(elementPrefab); 
                 array[mid - j] = e;
-                e.transform.position = new Vector2(-x, this.transform.position.y);
+                e.transform.position = new Vector2(x2, this.transform.position.y);
 
                 e = Instantiate(elementPrefab);
                 j++;
@@ -53,9 +58,9 @@ public class ArrayControllerRandom : MonoBehaviour
                 e.transform.position = new Vector2(x, this.transform.position.y);
 
                 e = Instantiate(elementPrefab);
+                x2 -= elementPadding;
                 array[mid - j] = e;
-                e.transform.position = new Vector2(-x, this.transform.position.y);
-
+                e.transform.position = new Vector2(x2, this.transform.position.y);
                 j++;
             }
 
@@ -67,6 +72,13 @@ public class ArrayControllerRandom : MonoBehaviour
             int num = Random.Range(min, max);
             e.setText(num.ToString());
             e.setValue(num);
+        }
+    }
+
+    public void clearLabels(){
+        foreach(Element e in array){
+            e.setText("");
+            e.setValue(0);
         }
     }
 
@@ -116,7 +128,9 @@ public class ArrayControllerRandom : MonoBehaviour
 
     public void deleteArray(){
         foreach(Element e in array){
-            e.delete();
+            if (e != null){
+                e.delete();
+            }
         }
     }
 

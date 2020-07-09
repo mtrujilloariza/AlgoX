@@ -13,6 +13,7 @@ public class Element : MonoBehaviour
     public Sprite redElement;
     public Sprite greenElement;
     public Sprite yellowElement;
+    public Sprite greyElement;
 
     public void setText(string text){
         textBox.text = text; 
@@ -42,11 +43,17 @@ public class Element : MonoBehaviour
         this.GetComponent<SpriteRenderer>().sprite = yellowElement;
     }
 
+    public void setGrey(){
+        this.GetComponent<SpriteRenderer>().sprite = greyElement;
+    }
+
     public int getValue(){
         return this.value;
     }
 
     public void delete(){
-        Destroy(this.gameObject);
+        if (this.gameObject != null){
+            Destroy(this.gameObject);
+        }
     }
 }
