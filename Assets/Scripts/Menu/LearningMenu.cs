@@ -30,4 +30,7 @@ public class LearningMenu : MonoBehaviour
         LearningMenu.scene = scene;
     }
     
+    public void LoadScene(string scene){
+        SceneManager.LoadScene(scene);
+    }
 }

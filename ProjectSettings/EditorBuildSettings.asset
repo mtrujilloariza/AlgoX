@@ -6,22 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: /Users/marlontrujilloariza/Library/Mobile Documents/com~apple~CloudDocs/.Trash/GitHub/The-Computer-Experience/Assets/Scenes/Learning/Learning
-      Menu.unity
+    path: Assets/Scenes/Learning/Learning Menu.unity
     guid: 2cf5fe9cfca374f498d695d8e6686bd0
   - enabled: 1
-    path: /Users/marlontrujilloariza/Library/Mobile Documents/com~apple~CloudDocs/.Trash/GitHub/The-Computer-Experience/Assets/Scenes/Learning/SelectionSort.unity
+    path: Assets/Scenes/Learning/SelectionSort.unity
     guid: b85c007adbfab714ab5fe1a0b5ead446
-  - enabled: 1
-    path: /Users/marlontrujilloariza/Library/Mobile Documents/com~apple~CloudDocs/.Trash/GitHub/The-Computer-Experience/Assets/Scenes/Story/BootUp.unity
+  - enabled: 0
+    path: Assets/Scenes/Story/BootUp.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: /Users/marlontrujilloariza/Library/Mobile Documents/com~apple~CloudDocs/.Trash/GitHub/The-Computer-Experience/Assets/Scenes/Learning/SizeSelector.unity
+    path: Assets/Scenes/Learning/SizeSelector.unity
     guid: c31e82e68180cc24395a43a2ce2ac2fa
   - enabled: 1
-    path: /Users/marlontrujilloariza/Library/Mobile Documents/com~apple~CloudDocs/.Trash/GitHub/The-Computer-Experience/Assets/Scenes/Learning/InsertionSort.unity
+    path: Assets/Scenes/Learning/InsertionSort.unity
     guid: 0ef409f389de943459501daf89952bde
   - enabled: 1
-    path: /Users/marlontrujilloariza/Library/Mobile Documents/com~apple~CloudDocs/.Trash/GitHub/The-Computer-Experience/Assets/Scenes/Learning/MergeSort.unity
+    path: Assets/Scenes/Learning/MergeSort.unity
     guid: b5278cd92946f4fd9a4ee5ab60347447
+  - enabled: 1
+    path: Assets/Scenes/Learning/MergeSortHelp.unity
+    guid: 6e9c02eab73cb534e9201c20e4dbc1ad
+  - enabled: 1
+    path: Assets/Scenes/Learning/InsertionSortHelp.unity
+    guid: fdac62abe5e5d8c45ae8953dd75020f8
+  - enabled: 1
+    path: Assets/Scenes/Learning/SelectionSortHelp.unity
+    guid: f77bc7e65a0e1c441a99fdfcb0302781
   m_configObjects: {}
